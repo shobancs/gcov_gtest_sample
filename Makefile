@@ -16,9 +16,7 @@ endif
 static_analysis:
 	rm -rf static_analysis.xml static_analysis verapp verapp.xml cppcheck.xml 
 	/bms/tools/cppcheck/bin/cppcheck --xml --xml-version=1 ${WORKSPACE}/ 2> cppcheck.xml
-	find | egrep '\.(cpp|cc|h|hpp)$$' | \
-			egrep -v 'IFC|tests' | \
-			xargs ~/.vera++/vera++ 2>verapp
+	
 	cat verapp | awk -F':' '{print "<error file=\""$$1"\" line=\""$$2"\" id=\"style\" severity=\"style\" msg=\""$$3"\"/>"}' > verapp.xml
 	cat cppcheck.xml | grep "error file=" > static_analysis || true
 	cat verapp.xml >> static_analysis
