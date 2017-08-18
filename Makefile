@@ -20,11 +20,7 @@ static_analysis:
 	cat verapp | awk -F':' '{print "<error file=\""$$1"\" line=\""$$2"\" id=\"style\" severity=\"style\" msg=\""$$3"\"/>"}' > verapp.xml
 	cat cppcheck.xml | grep "error file=" > static_analysis || true
 	cat verapp.xml >> static_analysis
-	rm -rf verapp verapp.xml cppcheck.xml
-	echo "<?xml version="1.0"?><results>" > static_analysis.xml
-	cat static_analysis | sort >> static_analysis.xml
-	echo "</results>" >> static_analysis.xml
-	rm -f static_analysis
+	
 
 	
 
