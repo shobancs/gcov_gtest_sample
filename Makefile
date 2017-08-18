@@ -15,7 +15,7 @@ endif
 
 static_analysis:
 	rm -rf static_analysis.xml static_analysis verapp verapp.xml cppcheck.xml 
-	cppcheck --xml --xml-version=1 ${WORKSPACE}/ 2> cppcheck.xml
+	/bms/tools/cppcheck/bin/cppcheck --xml --xml-version=1 ${WORKSPACE}/ 2> cppcheck.xml
 	find | egrep '\.(cpp|cc|h|hpp)$$' | \
 			egrep -v 'IFC|tests' | \
 			xargs ~/.vera++/vera++ 2>verapp
